@@ -1,0 +1,23 @@
+# Defining the base image
+FROM node:18-alpine
+
+# Working directory configuration
+WORKDIR /app
+
+# Files to copy to the working directory
+COPY package.json /
+
+# Installing packages
+RUN npm install
+
+#Copy all the project files
+COPY . /
+
+# Run the production build
+RUN npm run build
+
+# Port exhibition
+EXPOSE 3000
+
+# Start command
+CMD [ "npm", "start" ]
